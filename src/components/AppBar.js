@@ -6,6 +6,9 @@ const Bar = styled.div`
 	
 	padding: 1rem 0;
 	background: #E7B48F;
+	position:absolute;
+	width:100%;
+	bottom:0;
 `;
 
 const Wrapper = styled.div`
