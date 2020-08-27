@@ -14,7 +14,7 @@ const Wrapper = styled.div`
 `;
 
 
-function App() {
+function Home() {
   return (
 		<>
 			<Wrapper>
@@ -29,4 +29,4 @@ function App() {
   );
 }
 
-export default App;
+export default Home;
