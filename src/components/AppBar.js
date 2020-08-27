@@ -22,15 +22,18 @@ const Wrapper = styled.div`
 
 const IconButton = styled.button`
 	margin: 0 auto;
+	border:0;
+	background:transparent;
+	cursor:pointer;
 `;
 
 const AppBar = () =>{
 	return(
 		<Bar>
 			<Wrapper>
-				<IconButton><img src="" alt="IconButton"/></IconButton>  
-				<IconButton><img src="" alt="IconButton"/></IconButton>  
-				<IconButton><img src="" alt="IconButton"/></IconButton>  
+				<IconButton><img src="./home.svg" alt="IconButton"/></IconButton>  
+				<IconButton><img src="./create.svg" alt="IconButton"/></IconButton>  
+				<IconButton><img src="./category.svg" alt="IconButton"/></IconButton>  
 			</Wrapper>
 		</Bar>
 	)
