@@ -1,4 +1,5 @@
 import app from "firebase/app"
+import "firebase/auth"
 
 const config = {
 
@@ -17,7 +18,19 @@ class Firebase {
 
 	constructor(){
 		app.initializeApp(config)
+		this.auth = app.auth()
 	}
+
+	doCreateUserWithEmailAndPassWord = (email, password)=>{
+		this.auth.createUserWithEmailAndPassWord(email, password)
+	}
+
+	doSignInWithEmailAndPassWord = (email, password)=>{
+		this.auth.signInWithEmailAndPassWord(email, password)
+	}
+
+	doSignOut = ()=> this.auth.signOut()
+	
 }
 
 export default Firebase
