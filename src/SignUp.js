@@ -1,5 +1,7 @@
 import React from 'react';
+import { useState, useEffect, useContext } from "react"
 import styled from "styled-components"
+import { Firebase, FirebaseContext } from "./firebase/index.js"
 
 const Wrapper = styled.div`
 
@@ -46,7 +48,7 @@ const Form = styled.form`
 	margin: 1rem auto;
 `;
 
-const Submit = styled.button`
+const Submit = styled.input`
 	border:0;
 	border-radius: 5px;
 	color: #F2DDCF;
@@ -58,6 +60,16 @@ const Submit = styled.button`
 `;
 
 function SignUp() {
+
+	const [emailValue, setEmailValue] = useState(null)	
+	const [passwordValue, setPasswordValue] = useState(null)	
+
+	const firebase = useContext(FirebaseContext)
+
+	useEffect(()=>{
+		console.log(emailValue, passwordValue)
+	},[emailValue, passwordValue])
+
   return (
 		<>
 			<Wrapper>
@@ -66,9 +78,9 @@ function SignUp() {
 						<Title>Sign up to be able to use my app</Title>
 					</TextWrapper>
 					<Form>
-						<Input placeholder="email"/>
-						<Input placeholder="password"/>
-						<Submit>Submit</Submit>
+						<Input type="email" placeholder="email" onChange={(e)=>{setEmailValue(e.target.value)}}/>
+						<Input type="password" placeholder="password" onChange={(e)=>{setPasswordValue(e.target.value)}}/>
+						<Submit type="submit" onClick={(e)=>{ e.preventDefault(); firebase.doCreateUserWithEmailAndPassword(emailValue, passwordValue)}}/>
 					</Form>
 				</FormWrapper>
 			</Wrapper>

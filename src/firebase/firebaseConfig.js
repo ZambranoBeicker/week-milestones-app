@@ -21,12 +21,12 @@ class Firebase {
 		this.auth = app.auth()
 	}
 
-	doCreateUserWithEmailAndPassWord = (email, password)=>{
-		this.auth.createUserWithEmailAndPassWord(email, password)
+	doCreateUserWithEmailAndPassword = (email, password)=>{
+		this.auth.createUserWithEmailAndPassword(email, password)
 	}
 
-	doSignInWithEmailAndPassWord = (email, password)=>{
-		this.auth.signInWithEmailAndPassWord(email, password)
+	doSignInWithEmailAndPassword = (email, password)=>{
+		this.auth.signInWithEmailAndPassword(email, password)
 	}
 
 	doSignOut = ()=> this.auth.signOut()
