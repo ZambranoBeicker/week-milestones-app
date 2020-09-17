@@ -1,9 +1,11 @@
-import React,{ useState } from 'react';
+import React,{ useEffect, useContext, useState } from 'react';
 import MilestoneCard from "./components/MilestoneCard.js"
 import TitleCategory from "./components/TitleCategory.js"
 import AppBar from "./components/AppBar.js"
 import ModalForm from "./components/ModalForm.js"
 import styled from "styled-components"
+import {FirebaseContext} from "./firebase/index.js"
+
 
 const Wrapper = styled.div`
 
@@ -17,8 +19,13 @@ const Wrapper = styled.div`
 
 function Home() {
 
+	const firebase = useContext(FirebaseContext)
 	const [modalVisible, setModalVisible] = useState("none")
 
+	useEffect(()=>{
+		//firebase.milestone().once("value", (snapshot)=>{console.log(snapshot.val())})
+		firebase.logUserData()
+	},[])
   return (
 		<>
 			<Wrapper>

@@ -103,7 +103,7 @@ const ModalForm = ({modalDisplay})=>{
 						<Submit type="submit" onClick={(e)=>{ 
 							e.preventDefault()
 							
-							firebase.milestone().push().set({
+							firebase.milestone().add({
 								milestoneTitle:milestoneValue,
 								categoryTitle:categoryValue,
 							})
