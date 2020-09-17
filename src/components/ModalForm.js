@@ -78,7 +78,7 @@ const CloseButton = styled.div`
 	color:white;
 `
 
-const ModalForm = ({modalDisplay, history})=>{
+const ModalForm = ({modalDisplay})=>{
 
 	const [milestoneValue, setMilestoneValue] = useState(null)	
 	const [categoryValue, setCategoryValue] = useState(null)	
@@ -103,13 +103,11 @@ const ModalForm = ({modalDisplay, history})=>{
 						<Submit type="submit" onClick={(e)=>{ 
 							e.preventDefault()
 							
-							firebase.doSignInWithEmailAndPassword(milestoneValue)
-								.then(()=>{
-									setMilestoneValue("")
-									setCategoryValue("")
-									history.push("/app")
-								})
-								.catch((error)=> console.log(error))
+							firebase.milestone().push().set({
+								milestoneTitle:milestoneValue,
+								categoryTitle:categoryValue,
+							})
+								
 						}}/>
 					</Form>
 				</FormWrapper>
