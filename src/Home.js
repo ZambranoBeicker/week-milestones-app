@@ -23,8 +23,12 @@ function Home() {
 	const [modalVisible, setModalVisible] = useState("none")
 
 	useEffect(()=>{
-		//firebase.milestone().once("value", (snapshot)=>{console.log(snapshot.val())})
-		firebase.logUserData()
+		firebase.milestone().get()
+			.then(snapshots =>{
+
+				snapshots.forEach((item)=>{console.log(item.data())})
+
+			})
 	},[])
   return (
 		<>
