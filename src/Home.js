@@ -1,7 +1,8 @@
-import React from 'react';
+import React,{ useState } from 'react';
 import MilestoneCard from "./components/MilestoneCard.js"
 import TitleCategory from "./components/TitleCategory.js"
 import AppBar from "./components/AppBar.js"
+import ModalForm from "./components/ModalForm.js"
 import styled from "styled-components"
 
 const Wrapper = styled.div`
@@ -15,15 +16,19 @@ const Wrapper = styled.div`
 
 
 function Home() {
+
+	const [modalVisible, setModalVisible] = useState("none")
+
   return (
 		<>
 			<Wrapper>
+				<ModalForm modalDisplay={{visible:modalVisible, setVisible: setModalVisible}} />
 				<TitleCategory text="Edad" />
    			<MilestoneCard /> 
    			<MilestoneCard /> 
    			<MilestoneCard /> 
    			<MilestoneCard /> 
-				<AppBar />
+				<AppBar createOnClick={()=>{setModalVisible("block")}}/>
 			</Wrapper>
 		</>
   );

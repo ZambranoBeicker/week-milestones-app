@@ -27,12 +27,12 @@ const IconButton = styled.button`
 	cursor:pointer;
 `;
 
-const AppBar = () =>{
+const AppBar = ({createOnClick}) =>{
 	return(
 		<Bar>
 			<Wrapper>
 				<IconButton><img src="./home.svg" alt="IconButton"/></IconButton>  
-				<IconButton><img src="./create.svg" alt="IconButton"/></IconButton>  
+				<IconButton onClick={createOnClick}><img src="./create.svg" alt="IconButton"/></IconButton>  
 				<IconButton><img src="./category.svg" alt="IconButton"/></IconButton>  
 			</Wrapper>
 		</Bar>
