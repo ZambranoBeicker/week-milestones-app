@@ -17,28 +17,39 @@ const Wrapper = styled.div`
 `;
 
 
+
 function Home() {
 
 	const firebase = useContext(FirebaseContext)
 	const [modalVisible, setModalVisible] = useState("none")
+	const [milestoneCards, setMilestoneCards] = useState([])
 
 	useEffect(()=>{
 		firebase.milestone().get()
 			.then(snapshots =>{
 
-				snapshots.forEach((item)=>{console.log(item.data())})
-
-			})
-	},[])
+				const milestones = [];
+				snapshots.forEach((item)=>{
+					milestones.push({...item.data()})
+					})
+					
+				setMilestoneCards(milestones.map((data, index)=> {
+					return(
+						<div key={index}>	
+							<MilestoneCard 
+								title={data.milestoneTitle} 
+								category={data.categoryTitle}
+							/>
+						</div>
+					)
+				}))
+	})},[])
   return (
 		<>
 			<Wrapper>
 				<ModalForm modalDisplay={{visible:modalVisible, setVisible: setModalVisible}} />
 				<TitleCategory text="Edad" />
-   			<MilestoneCard /> 
-   			<MilestoneCard /> 
-   			<MilestoneCard /> 
-   			<MilestoneCard /> 
+				{<p>No hay nada papá</p> && milestoneCards}
 				<AppBar createOnClick={()=>{setModalVisible("block")}}/>
 			</Wrapper>
 		</>

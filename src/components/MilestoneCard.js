@@ -36,15 +36,15 @@ const Category = styled.p`
 	margin-right: 1rem;
 `;
 
-const MilestoneCard = () =>{
+const MilestoneCard = ({title, category, date = "12/12/12"}) =>{
 
 	return(
 		
 		<Wrapper>
-			<Title>Cumplí 15 años</Title>
+			<Title>{title}</Title>
 		  <CardInfoWrapper>
-			  <Category>Edad</Category>
-				<Date>12/12/12</Date>
+			  <Category>{category}</Category>
+				<Date>{date}</Date>
 		  </CardInfoWrapper>
 		  
 		</Wrapper>
