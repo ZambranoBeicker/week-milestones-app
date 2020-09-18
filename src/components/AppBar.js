@@ -1,6 +1,6 @@
 import React from "react"
 import styled from "styled-components"
-
+import { withRouter } from "react-router-dom"
 
 const Bar = styled.div`
 	
@@ -27,16 +27,16 @@ const IconButton = styled.button`
 	cursor:pointer;
 `;
 
-const AppBar = ({createOnClick}) =>{
+const AppBar = ({createOnClick, history}) =>{
 	return(
 		<Bar>
 			<Wrapper>
-				<IconButton><img src="./home.svg" alt="IconButton"/></IconButton>  
+				<IconButton onClick={()=>{history.push("/")}}><img src="./home.svg" alt="IconButton"/></IconButton> 
 				<IconButton onClick={createOnClick}><img src="./create.svg" alt="IconButton"/></IconButton>  
-				<IconButton><img src="./category.svg" alt="IconButton"/></IconButton>  
+				<IconButton onClick={()=>{history.push("/categories")}}><img src="./category.svg" alt="IconButton"/></IconButton> 
 			</Wrapper>
 		</Bar>
 	)
 }
 
-export default AppBar
+export default withRouter(AppBar)
