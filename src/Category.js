@@ -22,17 +22,35 @@ function Category() {
 		
 		firebase.milestone().get()
 			.then(snapshots =>{
-				const categoriesData = []
-
+				const categoriesData = [{title:"", array:[]}]
+				let indexes = 0;
 				snapshots.forEach((milestone)=>{
-					categoriesData.push(milestone.data().categoryTitle)
+
+					if(categoriesData.some((value, index) => {indexes = index; return value.title != milestone.data().categoryTitle && value.title === ""})){
+
+						categoriesData[indexes].title = milestone.data().categoryTitle 
+						categoriesData[indexes].array.push(milestone.data().categoryTitle)
+						categoriesData.push({title:"",array:[]})
+					}else{
+
+						categoriesData[indexes].array.push()
+					}
+
 				})
 				
-				setCategoryComponents(categoriesData.map((category, index)=>
-						<div key={index}>
-							<CategoryCard text={category} />
-						</div>
-				))
+				setCategoryComponents(categoriesData.map((data, index)=>{
+						if(data.title != ""){
+							
+						return (
+							<div key={index}>
+								<CategoryCard text={data.title} />
+							</div>
+						)}else{
+							return;
+						}
+						
+							
+			}))
 
 
 			})
