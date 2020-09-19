@@ -67,15 +67,21 @@ const Submit = styled.input`
 `;
 
 const CloseButton = styled.div`
+	display:flex;
+	justify-content:center;
 	position:absolute;
-	right:0;
-	top:0;
-	padding:1rem;
-	width:2.5rem;
-	height:2.5rem;
+	right:-10px;
+	top:-10px;
+	width:2rem;
+	height:2rem;
 	border-radius:50%;
-	background:black;
-	color:white;
+	background:#98234A;
+	cursor:pointer;
+`
+const CloseIcon = styled.img`
+	display:block;
+	max-width:100%;
+	height:auto;
 `
 
 const ModalForm = ({modalDisplay})=>{
@@ -93,7 +99,9 @@ const ModalForm = ({modalDisplay})=>{
 		<FixedWrapper display={modalDisplay.visible}>
 			<Wrapper>
 				<FormWrapper>
-					<CloseButton onClick={()=>{modalDisplay.setVisible("none")}}>Cerrar</CloseButton>
+					<CloseButton onClick={()=>{modalDisplay.setVisible("none")}}>
+						<CloseIcon src="Close.svg" alt="Close Button"/>
+					</CloseButton>
 					<TextWrapper>
 						<Title>Create a new Milestone</Title>
 					</TextWrapper>
