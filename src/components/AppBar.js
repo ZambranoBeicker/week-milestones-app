@@ -31,7 +31,7 @@ const AppBar = ({createOnClick, history}) =>{
 	return(
 		<Bar>
 			<Wrapper>
-				<IconButton onClick={()=>{history.push("/")}}><img src="./home.svg" alt="IconButton"/></IconButton> 
+				<IconButton onClick={()=>{history.push("/app")}}><img src="./home.svg" alt="IconButton"/></IconButton> 
 				<IconButton onClick={createOnClick}><img src="./create.svg" alt="IconButton"/></IconButton>  
 				<IconButton onClick={()=>{history.push("/categories")}}><img src="./category.svg" alt="IconButton"/></IconButton> 
 			</Wrapper>

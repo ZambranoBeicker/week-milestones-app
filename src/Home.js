@@ -39,6 +39,7 @@ function Home() {
 							<MilestoneCard 
 								title={data.milestoneTitle} 
 								category={data.categoryTitle}
+								date={data.date}
 							/>
 						</div>
 					)
