@@ -25,27 +25,49 @@ function Category() {
 				const categoriesData = [{title:"", array:[]}]
 				let indexes = 0;
 				snapshots.forEach((milestone)=>{
+				
+				if(categoriesData.some((value, index) => {
+					
+					if(value.title === ""){
+						indexes = index
+						return true
 
-					if(categoriesData.some((value, index) => {indexes = index; return value.title != milestone.data().categoryTitle && value.title === ""})){
+					}else if(value.title !== milestone.data().categoryTitle){
+						return false
 
-						categoriesData[indexes].title = milestone.data().categoryTitle 
+					}else{
+						indexes = index
+						return true
+					}
+
+				})){
+
+					if(indexes === (categoriesData.length - 1)){
+
+						categoriesData[indexes].title = milestone.data().categoryTitle
 						categoriesData[indexes].array.push(milestone.data().categoryTitle)
-						categoriesData.push({title:"",array:[]})
+						categoriesData.push({title: "", array:[]})
+					} 
+					else{
+					categoriesData[indexes].array.push(milestone.data().categoryTitle)
+
+					}
+
 					}else{
 
-						categoriesData[indexes].array.push()
+						categoriesData[indexes].push(milestone.data().categoryTitle)
 					}
 
 				})
 				
+				
 				setCategoryComponents(categoriesData.map((data, index)=>{
-						if(data.title != ""){
-							
-						return (
+						if(data.title !== ""){
+							return(
 							<div key={index}>
 								<CategoryCard text={data.title} />
-							</div>
-						)}else{
+							</div>)
+						}else{
 							return;
 						}
 						
