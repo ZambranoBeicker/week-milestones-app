@@ -65,7 +65,7 @@ function Category() {
 						if(data.title !== ""){
 							return(
 							<div key={index}>
-								<CategoryCard text={data.title} />
+								<CategoryCard text={data.title} quantity={data.array.length}/>
 							</div>)
 						}else{
 							return;
