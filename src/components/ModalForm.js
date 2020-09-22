@@ -116,7 +116,9 @@ const ModalForm = ({modalDisplay})=>{
 							var mm = String(today.getMonth() + 1).padStart(2, '0');
 							var yyyy = today.getFullYear();
 							
-							firebase.milestone().add({
+							firebase.logUserData() 
+							
+							firebase.getMilestoneRef().add({
 								milestoneTitle:milestoneValue,
 								categoryTitle:categoryValue,
 								date:`${dd}/${mm}/${yyyy}`

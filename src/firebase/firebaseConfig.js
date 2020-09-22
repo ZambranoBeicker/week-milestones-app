@@ -34,12 +34,10 @@ class Firebase {
 	
 
 	doSignOut = ()=> this.auth.signOut()
-	
-	user = uid => this.rtdb.ref(`user/${uid}`)
 
-	milestone = () => this.db.collection("Milestones") 
+	getUserRef = uid => this.db.collection(`Users`).doc(uid)
 
-	users = () => this.rtdb.ref(`users`)
+	getMilestoneRef = () => this.getUserRef(this.auth.currentUser.uid).collection("Milestones") 
 
 	logUserData = () =>{console.log(this.auth.currentUser)}
 }

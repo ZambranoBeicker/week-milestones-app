@@ -68,6 +68,7 @@ function SignUp() {
 
 	useEffect(()=>{
 		console.log(emailValue, passwordValue)
+		firebase.logUserData() 
 	},[emailValue, passwordValue])
 
   return (
@@ -80,7 +81,10 @@ function SignUp() {
 					<Form>
 						<Input type="email" placeholder="email" onChange={(e)=>{setEmailValue(e.target.value)}}/>
 						<Input type="password" placeholder="password" onChange={(e)=>{setPasswordValue(e.target.value)}}/>
-						<Submit type="submit" onClick={(e)=>{ e.preventDefault(); firebase.doCreateUserWithEmailAndPassword(emailValue, passwordValue)}}/>
+						<Submit type="submit" onClick={(e)=>{ 
+							e.preventDefault(); 
+							firebase.doCreateUserWithEmailAndPassword(emailValue, passwordValue)
+						}}/>
 					</Form>
 				</FormWrapper>
 			</Wrapper>

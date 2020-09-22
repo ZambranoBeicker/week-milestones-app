@@ -85,11 +85,6 @@ function SignIn({history}) {
 							e.preventDefault()
 							
 							firebase.doSignInWithEmailAndPassword(emailValue, passwordValue)
-								.then((authValue)=>{
-									firebase.user(authValue.user.uid).set({
-										email:emailValue,
-									})
-								})
 								.then(()=>{
 									setEmailValue("")
 									setPasswordValue("")

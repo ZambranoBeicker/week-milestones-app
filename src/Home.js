@@ -50,8 +50,9 @@ function Home() {
 	})},[])*/
 
 	useEffect(()=>{
-		
-		firebase.milestone().get()
+	
+	try {
+		firebase.getMilestoneRef().get()
 			.then(snapshots =>{
 				const categoriesData = [{title:"", array:[]}]
 				let indexes = 0;
@@ -91,8 +92,9 @@ function Home() {
 
 				})
 				
-				
-				setMilestoneLists(categoriesData.map((data, index)=>{
+				if(categoriesData.length > 1){
+
+					setMilestoneLists(categoriesData.map((data, index)=>{
 						if(data.title !== ""){
 							return(
 							<div key={index}>
@@ -100,13 +102,17 @@ function Home() {
 							</div>)
 						}else{
 							return;
-						}
-						
-							
-			}))
+						}	
+					}))
+				}else{
+					setMilestoneLists(<div><p>No hay nada papá. Tiene que crear una Milstone</p></div>)
+					
+				}
 
-
-			})
+			})}
+			catch(err){
+				console.log("This is the error: " + err)
+			}
 
 	},[])
 
