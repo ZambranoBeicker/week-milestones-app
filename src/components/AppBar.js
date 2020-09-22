@@ -6,7 +6,7 @@ const Bar = styled.div`
 	
 	padding: 1rem 0;
 	background: #E7B48F;
-	position:absolute;
+	position:fixed;
 	width:100%;
 	bottom:0;
 `;
