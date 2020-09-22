@@ -1,6 +1,7 @@
 import React,{ useEffect, useContext, useState } from 'react';
-import MilestoneCard from "./components/MilestoneCard.js"
-import TitleCategory from "./components/TitleCategory.js"
+//import MilestoneCard from "./components/MilestoneCard.js"
+//import TitleCategory from "./components/TitleCategory.js"
+import MilestoneList from "./components/MilestoneList.js"
 import AppBar from "./components/AppBar.js"
 import ModalForm from "./components/ModalForm.js"
 import styled from "styled-components"
@@ -22,9 +23,9 @@ function Home() {
 
 	const firebase = useContext(FirebaseContext)
 	const [modalVisible, setModalVisible] = useState("none")
-	const [milestoneCards, setMilestoneCards] = useState([])
+	const [milestoneLists, setMilestoneLists] = useState([])
 
-	useEffect(()=>{
+	/*useEffect(()=>{
 		firebase.milestone().get()
 			.then(snapshots =>{
 
@@ -33,7 +34,7 @@ function Home() {
 					milestones.push({...item.data()})
 					})
 					
-				setMilestoneCards(milestones.map((data, index)=> {
+				setMilestone(milestones.map((data, index)=> {
 					return(
 						<div key={index}>	
 							<MilestoneCard 
@@ -44,13 +45,75 @@ function Home() {
 						</div>
 					)
 				}))
-	})},[])
+	})},[])*/
+
+	useEffect(()=>{
+		
+		firebase.milestone().get()
+			.then(snapshots =>{
+				const categoriesData = [{title:"", array:[]}]
+				let indexes = 0;
+				snapshots.forEach((milestone)=>{
+				
+				if(categoriesData.some((value, index) => {
+					
+					if(value.title === ""){
+						indexes = index
+						return true
+
+					}else if(value.title !== milestone.data().categoryTitle){
+						return false
+
+					}else{
+						indexes = index
+						return true
+					}
+
+				})){
+
+					if(indexes === (categoriesData.length - 1)){
+
+						categoriesData[indexes].title = milestone.data().categoryTitle
+						categoriesData[indexes].array.push(milestone.data())
+						categoriesData.push({title: "", array:[]})
+					} 
+					else{
+					categoriesData[indexes].array.push(milestone.data())
+
+					}
+
+					}else{
+
+						categoriesData[indexes].push(milestone.data())
+					}
+
+				})
+				
+				
+				setMilestoneLists(categoriesData.map((data, index)=>{
+						if(data.title !== ""){
+							return(
+							<div key={index}>
+								<MilestoneList title={data.title} cardsData={data.array}/>
+							</div>)
+						}else{
+							return;
+						}
+						
+							
+			}))
+
+
+			})
+
+	},[])
+
+
   return (
 		<>
 			<Wrapper>
 				<ModalForm modalDisplay={{visible:modalVisible, setVisible: setModalVisible}} />
-				<TitleCategory text="Edad" />
-				{<p>No hay nada papá</p> && milestoneCards}
+				{ <p>Cargando papá. Esperese un momentico...</p> && milestoneLists }
 				<AppBar createOnClick={()=>{setModalVisible("block")}}/>
 			</Wrapper>
 		</>
