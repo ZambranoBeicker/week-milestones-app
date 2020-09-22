@@ -1,4 +1,4 @@
-import React,{ useState, useContext, useEffect } from "react"
+import React,{ useState, useContext} from "react"
 import styled from "styled-components"
 import { FirebaseContext } from "../firebase/index.js"
 
@@ -91,10 +91,6 @@ const ModalForm = ({modalDisplay})=>{
 
 	const firebase = useContext(FirebaseContext)
 
-	useEffect(()=>{
-		console.log(milestoneValue, categoryValue)
-	},[milestoneValue, categoryValue])
-
   return (
 		<FixedWrapper display={modalDisplay.visible}>
 			<Wrapper>
@@ -116,13 +112,12 @@ const ModalForm = ({modalDisplay})=>{
 							var mm = String(today.getMonth() + 1).padStart(2, '0');
 							var yyyy = today.getFullYear();
 							
-							firebase.logUserData() 
-							
 							firebase.getMilestoneRef().add({
 								milestoneTitle:milestoneValue,
 								categoryTitle:categoryValue,
 								date:`${dd}/${mm}/${yyyy}`
 							})
+							.then(()=>{modalDisplay.setVisible("none")})
 								
 						}}/>
 					</Form>

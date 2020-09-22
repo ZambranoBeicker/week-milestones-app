@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState, useEffect, useContext } from "react"
+import { useState, useContext } from "react"
 import styled from "styled-components"
 import { Firebase, FirebaseContext } from "./firebase/index.js"
 
@@ -65,11 +65,6 @@ function SignUp() {
 	const [passwordValue, setPasswordValue] = useState(null)	
 
 	const firebase = useContext(FirebaseContext)
-
-	useEffect(()=>{
-		console.log(emailValue, passwordValue)
-		firebase.logUserData() 
-	},[emailValue, passwordValue])
 
   return (
 		<>
