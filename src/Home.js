@@ -19,6 +19,16 @@ const Wrapper = styled.div`
 	padding-top: 0;
 `;
 
+const Warning = styled.div`
+	text-align:center;
+	font-size: 1.5rem;
+	padding-top:2rem;
+	color:#98234A;
+`
+
+const WarningText = styled.p`
+	margin:0;
+`
 
 
 function Home() {
@@ -105,7 +115,7 @@ function Home() {
 						}	
 					}))
 				}else{
-					setMilestoneLists(<div><p>No hay nada papá. Tiene que crear una Milstone</p></div>)
+					setMilestoneLists(<Warning><WarningText>No hay nada papá. Tiene que crear una Milstone</WarningText></Warning>)
 					
 				}
 
