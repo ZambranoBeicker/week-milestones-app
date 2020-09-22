@@ -15,6 +15,8 @@ const Wrapper = styled.div`
 	padding-top:1rem;
 	min-height:100vh;
 	position:relative;
+	padding: 5rem 0;
+	padding-top: 0;
 `;
 
 
