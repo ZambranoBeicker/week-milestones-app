@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState, useEffect, useContext } from "react"
+import { useState, useContext } from "react"
 import styled from "styled-components"
 import { Firebase, FirebaseContext } from "./firebase/index.js"
 import { withRouter } from "react-router-dom"
@@ -66,10 +66,6 @@ function SignIn({history}) {
 	const [passwordValue, setPasswordValue] = useState(null)	
 
 	const firebase = useContext(FirebaseContext)
-
-	useEffect(()=>{
-		console.log(emailValue, passwordValue)
-	},[emailValue, passwordValue])
 
   return (
 		<>

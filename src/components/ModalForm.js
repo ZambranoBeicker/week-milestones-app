@@ -1,4 +1,4 @@
-import React,{ useState, useContext} from "react"
+import React,{ useEffect, useState, useContext} from "react"
 import styled from "styled-components"
 import { FirebaseContext } from "../firebase/index.js"
 
@@ -89,6 +89,7 @@ const ModalForm = ({modalDisplay, setMilestone})=>{
 
 	const [milestoneValue, setMilestoneValue] = useState(null)	
 	const [categoryValue, setCategoryValue] = useState(null)	
+	const [isSubmitted, setIsSubmitted] = useState(false)	
 	//const [date, setDate] = useState("12/12/12")	
 
 	const firebase = useContext(FirebaseContext)
@@ -104,8 +105,18 @@ const ModalForm = ({modalDisplay, setMilestone})=>{
 						<Title>Create a new Milestone</Title>
 					</TextWrapper>
 					<Form>
-						<Input type="text" placeholder="Milestone" onChange={(e)=>{setMilestoneValue(e.target.value)}}/>
-						<Input type="text" placeholder="Category" onChange={(e)=>{setCategoryValue(e.target.value)}}/>
+						<Input 
+							value={milestoneValue} 
+							type="text" 
+							placeholder="Milestone" 
+							onChange={(e)=>{setMilestoneValue(e.target.value)}}/>
+
+						<Input 
+							value={categoryValue} 
+							type="text" 
+							placeholder="Category" 
+							onChange={(e)=>{setCategoryValue(e.target.value)}}/>
+
 						<Submit type="submit" onClick={(e)=>{ 
 							e.preventDefault()
 							
@@ -130,6 +141,8 @@ const ModalForm = ({modalDisplay, setMilestone})=>{
 										date:currentDate 
 									}
 								})
+								setCategoryValue("")
+								setMilestoneValue("")
 							})
 								
 						}}/>
