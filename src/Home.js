@@ -36,28 +36,15 @@ function Home() {
 	const firebase = useContext(FirebaseContext)
 	const [modalVisible, setModalVisible] = useState("none")
 	const [milestoneLists, setMilestoneLists] = useState([])
+	const [newMilestones, setNewMilestones] = useState(0)
 
-	/*useEffect(()=>{
-		firebase.milestone().get()
-			.then(snapshots =>{
-
-				const milestones = [];
-				snapshots.forEach((item)=>{
-					milestones.push({...item.data()})
-					})
-					
-				setMilestone(milestones.map((data, index)=> {
-					return(
-						<div key={index}>	
-							<MilestoneCard 
-								title={data.milestoneTitle} 
-								category={data.categoryTitle}
-								date={data.date}
-							/>
-						</div>
-					)
-				}))
-	})},[])*/
+	const mapMilestones = milestonesData =>{
+		return milestonesData.map((data, index)=>{
+			
+			if(data.title !== ""){
+				return	<div key={index}><MilestoneList title={data.title} cardsData={data.array}/></div>
+			}else{return } 
+		})}
 
 	useEffect(()=>{
 	
@@ -103,17 +90,8 @@ function Home() {
 				})
 				
 				if(categoriesData.length > 1){
-
-					setMilestoneLists(categoriesData.map((data, index)=>{
-						if(data.title !== ""){
-							return(
-							<div key={index}>
-								<MilestoneList title={data.title} cardsData={data.array}/>
-							</div>)
-						}else{
-							return;
-						}	
-					}))
+					setMilestoneLists(categoriesData)
+					
 				}else{
 					setMilestoneLists(<Warning><WarningText>No hay nada papá. Tiene que crear una Milstone</WarningText></Warning>)
 					
@@ -127,15 +105,36 @@ function Home() {
 	},[])
 
 
+	useEffect(()=>{
+
+		if(newMilestones !== 0) {
+			let indexes = 0
+			if(milestoneLists.some((data, index)=> {indexes = index;return newMilestones.title === data.title})){
+
+				setMilestoneLists(milestoneLists.map((data, index)=>{
+					if(index === indexes) return {title: data.title, array:[...data.array, newMilestones.data]}
+					else return data
+					 
+				}))
+			}else{
+				setMilestoneLists([...milestoneLists, {title: newMilestones.title, array: [newMilestones.data]}])
+			}
+
+			
+		}else{
+			return;
+		}
+	},[newMilestones])
+
   return (
 		<>
 			<Wrapper>
-				<ModalForm modalDisplay={{visible:modalVisible, setVisible: setModalVisible}} />
-				{ <p>Cargando papá. Esperese un momentico...</p> && milestoneLists }
+				<ModalForm setMilestone={setNewMilestones} modalDisplay={{visible:modalVisible, setVisible: setModalVisible}} />
+				{ <p>Cargando papá. Esperese un momentico...</p> && mapMilestones(milestoneLists) }
 				<AppBar createOnClick={()=>{setModalVisible("block")}}/>
 			</Wrapper>
 		</>
   );
 }
 
-export default Home;
+export default Home

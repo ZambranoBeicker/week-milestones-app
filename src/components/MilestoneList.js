@@ -11,6 +11,7 @@ const Wrapper = styled.div`
 	background-color:#F2DDCF;
 	padding-top:1rem;
 	position:relative;
+	z-index:1;
 `;
 
 
@@ -32,7 +33,7 @@ function MilestoneList({title, cardsData }) {
 						</React.Fragment>
 					)
 				}))
-	},[])
+	},[cardsData])
 
   return (
 		<>

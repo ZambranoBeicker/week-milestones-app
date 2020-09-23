@@ -6,7 +6,8 @@ import { FirebaseContext } from "../firebase/index.js"
 const FixedWrapper = styled.div`
 	position:fixed;
 	width:100%;
-	display: ${({display})=> display}
+	display: ${({display})=> display};
+	z-index:100;
 `
 
 const Wrapper = styled.div`
@@ -84,10 +85,11 @@ const CloseIcon = styled.img`
 	height:auto;
 `
 
-const ModalForm = ({modalDisplay})=>{
+const ModalForm = ({modalDisplay, setMilestone})=>{
 
 	const [milestoneValue, setMilestoneValue] = useState(null)	
 	const [categoryValue, setCategoryValue] = useState(null)	
+	//const [date, setDate] = useState("12/12/12")	
 
 	const firebase = useContext(FirebaseContext)
 
@@ -111,13 +113,24 @@ const ModalForm = ({modalDisplay})=>{
 							var dd = String(today.getDate()).padStart(2, '0');
 							var mm = String(today.getMonth() + 1).padStart(2, '0');
 							var yyyy = today.getFullYear();
-							
+							const currentDate = `${dd}/${mm}/${yyyy}`  
+
 							firebase.getMilestoneRef().add({
 								milestoneTitle:milestoneValue,
 								categoryTitle:categoryValue,
-								date:`${dd}/${mm}/${yyyy}`
+								date: currentDate
 							})
-							.then(()=>{modalDisplay.setVisible("none")})
+							.then(()=>{
+								modalDisplay.setVisible("none"); 
+								setMilestone({
+									title: categoryValue, 
+									data:{
+										milestoneTitle:milestoneValue,
+										categoryTitle:categoryValue,
+										date:currentDate 
+									}
+								})
+							})
 								
 						}}/>
 					</Form>
