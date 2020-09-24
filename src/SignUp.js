@@ -2,6 +2,7 @@ import React from 'react';
 import { useState, useContext } from "react"
 import styled from "styled-components"
 import { Firebase, FirebaseContext } from "./firebase/index.js"
+import { withRouter } from "react-router-dom"
 
 const Wrapper = styled.div`
 
@@ -59,7 +60,7 @@ const Submit = styled.input`
 	cursor: pointer;
 `;
 
-function SignUp() {
+function SignUp({history}) {
 
 	const [emailValue, setEmailValue] = useState(null)	
 	const [passwordValue, setPasswordValue] = useState(null)	
@@ -79,6 +80,9 @@ function SignUp() {
 						<Submit type="submit" onClick={(e)=>{ 
 							e.preventDefault(); 
 							firebase.doCreateUserWithEmailAndPassword(emailValue, passwordValue)
+								.then(()=>{
+									history.push("/")
+								})
 						}}/>
 					</Form>
 				</FormWrapper>
