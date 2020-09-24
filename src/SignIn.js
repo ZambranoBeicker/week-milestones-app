@@ -2,7 +2,7 @@ import React from 'react';
 import { useState, useContext } from "react"
 import styled from "styled-components"
 import { Firebase, FirebaseContext } from "./firebase/index.js"
-import { withRouter } from "react-router-dom"
+import { withRouter} from "react-router-dom"
 
 const Wrapper = styled.div`
 
@@ -12,6 +12,18 @@ const Wrapper = styled.div`
 	min-height:100vh;
 	position:relative;
 `;
+
+const Link = styled.a`
+	display:block;
+	color:blue;
+	margin:1rem auto;
+	margin-bottom:0;
+	max-width:145px;
+	&:hover{
+		cursor: pointer;
+		text-decoration: underline;
+	}	
+`
 
 const FormWrapper = styled.div`
 	background: #E7B48F;
@@ -77,6 +89,7 @@ function SignIn({history}) {
 					<Form>
 						<Input type="email" placeholder="email" onChange={(e)=>{setEmailValue(e.target.value)}}/>
 						<Input type="password" placeholder="password" onChange={(e)=>{setPasswordValue(e.target.value)}}/>
+						<Link onClick={()=>{history.push("/sign-up")}}>Register</Link>
 						<Submit type="submit" onClick={(e)=>{ 
 							e.preventDefault()
 							
