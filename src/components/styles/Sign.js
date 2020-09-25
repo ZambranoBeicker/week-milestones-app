@@ -41,6 +41,10 @@ const Input = styled.input`
 	border:0;
 	display:block;
 	max-width: 145px;
+	transition: .3s;
+	&:hover{
+		background:#f0f0f0;
+	}
 `;
 
 const TextWrapper = styled.div`
