@@ -38,12 +38,16 @@ const Input = styled.input`
 	background: white;
 	margin: 0 auto;
 	margin-top: .75rem;
-	border:0;
+	border:2px solid white;
 	display:block;
 	max-width: 145px;
-	transition: .3s;
+	transition: .15s;
 	&:hover{
 		background:#f0f0f0;
+		border-color:#f0f0f0;
+	}
+	&:focus{
+		border-color:#98234A;
 	}
 `;
 
