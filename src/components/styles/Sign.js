@@ -75,6 +75,10 @@ const Submit = styled.input`
 	margin: 1rem;
 	margin-left: 2.15rem;
 	cursor: pointer;
+	transition:.2s;
+	&:hover{
+		background:#88133A
+	}
 `;
 
 
