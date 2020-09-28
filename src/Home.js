@@ -39,6 +39,9 @@ function Home() {
 	const [newMilestones, setNewMilestones] = useState(0)
 
 	const mapMilestones = milestonesData =>{
+	
+		if(!Array.isArray(milestonesData)) return milestonesData 
+
 		return milestonesData.map((data, index)=>{
 			
 			if(data.title !== ""){
@@ -47,9 +50,15 @@ function Home() {
 		})}
 
 	useEffect(()=>{
-	
-	try {
-		firebase.getMilestoneRef().get()
+
+		let getRef;
+
+		firebase.auth.onAuthStateChanged((user)=>{
+			if(user){
+			getRef = () => firebase.getMilestoneRef(user.uid)
+
+try {
+		 getRef().get()
 			.then(snapshots =>{
 				const categoriesData = [{title:"", array:[]}]
 				let indexes = 0;
@@ -102,6 +111,13 @@ function Home() {
 				console.log("This is the error: " + err)
 			}
 
+		}else{
+			getRef = () => firebase.getMilestoneRef("")
+		}
+		})
+	
+	
+
 	},[])
 
 
@@ -109,6 +125,12 @@ function Home() {
 
 		if(newMilestones !== 0) {
 			let indexes = 0
+
+			if(!Array.isArray(milestoneLists)){
+				setMilestoneLists([{title: newMilestones.title, array: [newMilestones.data]}])
+				return;
+			}
+
 			if(milestoneLists.some((data, index)=> {indexes = index;return newMilestones.title === data.title})){
 
 				setMilestoneLists(milestoneLists.map((data, index)=>{

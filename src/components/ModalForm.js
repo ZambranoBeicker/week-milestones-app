@@ -126,7 +126,7 @@ const ModalForm = ({modalDisplay, setMilestone})=>{
 							var yyyy = today.getFullYear();
 							const currentDate = `${dd}/${mm}/${yyyy}`  
 
-							firebase.getMilestoneRef().add({
+							firebase.getMilestoneRef(firebase.auth.currentUser.uid).add({
 								milestoneTitle:milestoneValue,
 								categoryTitle:categoryValue,
 								date: currentDate

@@ -37,7 +37,7 @@ class Firebase {
 
 	getUserRef = uid => this.db.collection(`Users`).doc(uid)
 
-	getMilestoneRef = () => this.getUserRef(this.auth.currentUser.uid).collection("Milestones") 
+	getMilestoneRef = user => this.getUserRef(user).collection("Milestones") 
 
 	logUserData = () =>{console.log(this.auth.currentUser)}
 }
