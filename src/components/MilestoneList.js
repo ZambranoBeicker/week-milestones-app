@@ -1,9 +1,17 @@
 import React,{ useEffect, useContext, useState } from 'react';
 import TitleCategory from "./TitleCategory.js"
 import MilestoneCard from "./MilestoneCard.js"
-import styled from "styled-components"
+import styled,{ keyframes } from "styled-components"
 import {FirebaseContext} from "../firebase/index.js"
 
+const appear = keyframes`
+	from{
+		opacity:0;
+	}
+	to{
+		opacity:1;
+	}
+`
 
 const Wrapper = styled.div`
 
@@ -12,6 +20,7 @@ const Wrapper = styled.div`
 	padding-top:1rem;
 	position:relative;
 	z-index:1;
+	animation: ${appear} .2s ease-in;
 `;
 
 
