@@ -9,6 +9,14 @@ const Bar = styled.div`
 	position:fixed;
 	width:100%;
 	bottom:0;
+	z-index:10;
+	@media screen and (min-width:1024px){
+		top:0;
+		left:0;
+		bottom:0;
+		width:100px;
+
+	}
 `;
 
 const Wrapper = styled.div`
@@ -17,6 +25,9 @@ const Wrapper = styled.div`
 	max-width:265px;
 	margin-right: auto;
 	margin-left: auto;
+	@media screen and (min-width:1024px){
+		flex-direction: column;
+	}
 `;
 
 
@@ -25,6 +36,9 @@ const IconButton = styled.button`
 	border:0;
 	background:transparent;
 	cursor:pointer;
+	@media screen and (min-width:1024px){
+		margin:1rem 0;
+	}
 `;
 
 const AppBar = ({createOnClick, history}) =>{
