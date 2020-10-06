@@ -19,8 +19,13 @@ function Category() {
 	const firebase = useContext(FirebaseContext)
 
 	useEffect(()=>{
-		
-		firebase.milestone().get()
+	let getRef;
+
+		firebase.auth.onAuthStateChanged((user)=>{
+			if(user){
+			getRef = () => firebase.getMilestoneRef(user.uid)	
+
+		getRef().get()
 			.then(snapshots =>{
 				const categoriesData = [{title:"", array:[]}]
 				let indexes = 0;
@@ -77,7 +82,7 @@ function Category() {
 
 			})
 
-	},[])
+	}})},[])
 
   return (
 		<>
