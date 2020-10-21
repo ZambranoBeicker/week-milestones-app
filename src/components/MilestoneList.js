@@ -14,7 +14,7 @@ const appear = keyframes`
 
 const Wrapper = styled.div`
   font-family: Helvetica;
-  background-color: #e8fee1;
+  background-color: #9fedf0;
   padding-top: 1rem;
   position: relative;
   z-index: 1;

@@ -1,15 +1,12 @@
 import React, { useEffect, useContext, useState } from "react";
-//import MilestoneCard from "./components/MilestoneCard.js"
-//import TitleCategory from "./components/TitleCategory.js"
 import MilestoneList from "./components/MilestoneList.js";
-import AppBar from "./components/AppBar.js";
 import ModalForm from "./components/ModalForm.js";
 import styled from "styled-components";
 import { FirebaseContext } from "./firebase/index.js";
 
 const Wrapper = styled.div`
   font-family: Helvetica;
-  background-color: #f2ddcf;
+  background-color: #f1faee;
   padding-top: 1rem;
   min-height: 100vh;
   position: relative;
@@ -159,11 +156,6 @@ function Home() {
         />
         {<p>Cargando papá. Esperese un momentico...</p> &&
           mapMilestones(milestoneLists)}
-        <AppBar
-          createOnClick={() => {
-            setModalVisible("block");
-          }}
-        />
       </Wrapper>
     </>
   );
