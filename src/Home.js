@@ -12,6 +12,7 @@ const Wrapper = styled.div`
   position: relative;
   padding: 5rem 0;
   padding-top: 0;
+  display: flex;
 `;
 
 const Warning = styled.div`
@@ -37,9 +38,9 @@ function Home() {
     return milestonesData.map((data, index) => {
       if (data.title !== "") {
         return (
-          <div key={index}>
+          <React.Fragment key={index}>
             <MilestoneList title={data.title} cardsData={data.array} />
-          </div>
+          </React.Fragment>
         );
       } else {
         return null;
