@@ -12,8 +12,8 @@ const Wrapper = styled.div`
 	padding: .75rem 0 .75rem 1.25rem; 
 	margin: 1rem auto;
 	border-radius: 5px;
-	background-color:#E7B48F;
-	color:#98234A;
+	background-color:#E8FEE1;
+	color:#16300D;
 `;
 
 
