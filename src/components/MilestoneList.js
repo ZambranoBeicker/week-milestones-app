@@ -25,6 +25,8 @@ const Wrapper = styled.div`
 	margin: 0 1.75rem;
   margin-bottom: 1rem;
 	width:100%;
+	overflow: hidden;
+	height: 1%;
 `;
 
 function MilestoneList({ title, cardsData }) {
