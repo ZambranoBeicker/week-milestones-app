@@ -20,16 +20,17 @@ const Title = styled.h4`
   font-weight: normal;
 `;
 
+const DateWrapper = styled.div`
+  padding: 0.15rem 0.6rem;
+  background: #ccf1f2;
+  border-radius: 3px;
+`;
+
 const Date = styled.p`
   font-size: 12px;
   margin: 0;
+  margin-top: 4px;
   margin-right: auto;
-`;
-
-const Category = styled.p`
-  font-size: 12px;
-  margin: 0;
-  margin-right: 1rem;
 `;
 
 const MilestoneCard = ({ title, category, date = "12/12/12" }) => {
@@ -37,8 +38,9 @@ const MilestoneCard = ({ title, category, date = "12/12/12" }) => {
     <Wrapper>
       <Title>{title}</Title>
       <CardInfoWrapper>
-        <Category>{category}</Category>
-        <Date>{date}</Date>
+        <DateWrapper>
+          <Date>{date}</Date>
+        </DateWrapper>
       </CardInfoWrapper>
     </Wrapper>
   );
