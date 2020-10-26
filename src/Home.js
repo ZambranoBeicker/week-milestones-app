@@ -1,4 +1,5 @@
 import React, { useEffect, useContext, useState } from "react";
+import Header from "./components/Header";
 import MilestoneList from "./components/MilestoneList.js";
 import ModalForm from "./components/ModalForm.js";
 import styled from "styled-components";
@@ -151,6 +152,7 @@ function Home() {
   return (
     <>
       <Wrapper>
+        <Header />
         <ModalForm
           setMilestone={setNewMilestones}
           modalDisplay={{ visible: modalVisible, setVisible: setModalVisible }}
