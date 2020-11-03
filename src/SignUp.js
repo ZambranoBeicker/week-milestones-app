@@ -1,9 +1,8 @@
 import React from 'react';
 import { useState, useContext } from "react"
-import styled from "styled-components"
-import { Firebase, FirebaseContext } from "./firebase/index.js"
+import { FirebaseContext } from "./firebase/index.js"
 import { withRouter } from "react-router-dom"
-import { Submit, Form, Title, TextWrapper, Wrapper, FormWrapper, Link, Input } from "./components/styles/Sign.js"
+import { Submit, Form, Title, TextWrapper, Wrapper, FormWrapper, Input } from "./components/styles/Sign.js"
 
 
 

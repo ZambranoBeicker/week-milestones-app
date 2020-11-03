@@ -1,10 +1,9 @@
-import React from 'react';
 import styled from "styled-components"
 
 const Wrapper = styled.div`
 
 	font-family:Helvetica;
-	background-color:#F2DDCF;
+	background-color:#FCFDFC;
 	padding-top:1rem;
 	min-height:100vh;
 	position:relative;
@@ -12,7 +11,7 @@ const Wrapper = styled.div`
 
 const Link = styled.a`
 	display:block;
-	color:blue;
+	color:#5156D4;
 	margin:1rem auto;
 	margin-bottom:0;
 	max-width:145px;
@@ -23,25 +22,30 @@ const Link = styled.a`
 `
 
 const FormWrapper = styled.div`
-	background: #E7B48F;
-	max-width: 245px;
-	color:#98234A;
-	border-radius:5px;
+	background: #FCFDFC;
+	max-width: 480px;
+	color:#16300D;
+	border-radius:10px;
 	margin: 0 auto;
+	box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.25);
 	padding: 1rem;
 	
 `;
 
 const Input = styled.input`
 	border-radius:5px;
-	padding: .5rem;
-	background: white;
+	padding: 1rem;
+	background: #F1FAEE;
 	margin: 0 auto;
 	margin-top: .75rem;
-	border:2px solid white;
+	border: 1px solid #CDDDC8;
 	display:block;
-	max-width: 145px;
+	width: calc(100% - 2rem);
+	border-radius: 5px;
 	transition: .15s;
+	&:placeholder:{
+		color: #8F9E9F
+	}
 	&:hover{
 		background:#f0f0f0;
 		border-color:#f0f0f0;
@@ -58,11 +62,11 @@ const TextWrapper = styled.div`
 `;
 
 const Title = styled.h2`
-	font-size: 1.5rem;
+	font-size: 1.25rem;
 `;
 
 const Form = styled.form`
-	max-width: 225px;
+	max-width: 360px;
 	margin: 1rem auto;
 `;
 
